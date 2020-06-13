@@ -1,62 +1,32 @@
-import React from 'react'
+import React, {useState} from 'react'
 import ReactDOM from 'react-dom'
 
-const Header = (props) => {
-    return (
-        <h1>{props.course.name}</h1>
-    )
-}
+// Destructuring here
+// And simplifying return since it has only one return argument
+const Display = ({counter}) => <div>{counter}</div>
 
-const Content = (props) => {
-    return (
-        <>
-            <Part name={props.parts[0].name} exercise={props.parts[0].exercises}/>
-            <Part name={props.parts[1].name} exercise={props.parts[1].exercises}/>
-            <Part name={props.parts[2].name} exercise={props.parts[2].exercises}/>
-        </>
-    )
-}
-
-const Part = (props) => {
-    return (
-        <p>{props.name} {props.exercise}</p>
-    )
-}
-
-const Total = (props) => {
-    const list = props.parts
-    const total = list[0].exercises + list[1].exercises + list[2].exercises
-    return (
-        <p>Number of exercises {total}</p>
-    )
-}
+// Same here tbh
+const Buttons = ({handleClick, text}) => <button onClick={handleClick}>{text}</button>
 
 const App = () => {
-    const course = {
-        name: 'Half Stack application development',
-        parts: [
-            {
-                name: 'Fundamentals of React',
-                exercises: 10
-            },
-            {
-                name: 'Using props to pass data',
-                exercises: 7
-            },
-            {
-                name: 'State of a component',
-                exercises: 14
-            }
-        ]
-    }
+    const [counter, setCounter] = useState(0)
+
+    const increaseByOne = () => setCounter(counter + 1)
+    const decreaseByOne = () => setCounter(counter - 1)
+    const setToZero = () => setCounter(0)
 
     return (
         <div>
-            <Header course={course}/>
-            <Content parts={course.parts}/>
-            <Total parts={course.parts}/>
+            <Display counter={counter}/>
+            <Buttons handleClick={increaseByOne} text='plus'/>
+            <Buttons handleClick={decreaseByOne} text='subtract'/>
+            <Buttons handleClick={setToZero} text='clear'/>
         </div>
     )
 }
 
-ReactDOM.render(<App/>, document.getElementById('root'))
+
+ReactDOM.render(
+    <App/>,
+    document.getElementById('root')
+)
