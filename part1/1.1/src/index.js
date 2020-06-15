@@ -1,6 +1,14 @@
 import React, {useState} from 'react'
 import ReactDOM from 'react-dom'
 
+const Display = props => <div>{props.value}</div>
+
+const Button = (props) => (
+    <button onClick={props.onClick}>
+        {props.text}
+    </button>
+)
+
 const App = (props) => {
     const [left, setLeft] = useState(0)
     const [right, setRight] = useState(0)
@@ -32,19 +40,13 @@ const App = (props) => {
         )
     }
 
-    const Button = (props) => {
-        return (
-            <button onClick={props.onClick}>{props.text}</button>
-        )
-    }
-
     return (
         <div>
             <div>
-                {left}
+                <Display value={left}/>
                 <Button onClick={handleLeftClick} text={"left"}/>
                 <Button onClick={handleRightClick} text={"right"}/>
-                {right}
+                <Display value={right}/>
                 <History allClicks={allClicks}/>
             </div>
         </div>
