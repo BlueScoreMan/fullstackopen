@@ -7,7 +7,7 @@ const Button = (props) => {
     )
 }
 
-const Display = (props) => {
+const Statistics = (props) => {
     return <div>{props.text} {props.value}</div>
 }
 
@@ -55,12 +55,12 @@ const App = () => {
             <Button onClick={handleBad} text={"bad"}/>
 
             <h1>statistics</h1>
-            <Display text={"good"} value={good}/>
-            <Display text={"neutral"} value={neutral}/>
-            <Display text={"bad"} value={bad}/>
-            <Display text={"all"} value={all.length}/>
-            <Display text={"average"} value={calcAvg()}/>
-            <Display text={"positive"} value={calcPositive()}/>
+            <Statistics text={"good"} value={good}/>
+            <Statistics text={"neutral"} value={neutral}/>
+            <Statistics text={"bad"} value={bad}/>
+            <Statistics text={"all"} value={all.length}/>
+            <Statistics text={"average"} value={calcAvg()}/>
+            <Statistics text={"positive"} value={calcPositive()}/>
 
         </div>
     )
