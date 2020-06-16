@@ -8,7 +8,12 @@ const Button = (props) => {
 }
 
 const Statistics = (props) => {
-    return <div>{props.text} {props.value}</div>
+    return (
+        <tr>
+            <td>{props.text}</td>
+            <td>{props.value}</td>
+        </tr>
+    )
 }
 
 const App = () => {
@@ -56,12 +61,16 @@ const App = () => {
         return (
             <div>
                 <h1>statistics</h1>
-                <Statistics text={"good"} value={good}/>
-                <Statistics text={"neutral"} value={neutral}/>
-                <Statistics text={"bad"} value={bad}/>
-                <Statistics text={"all"} value={all.length}/>
-                <Statistics text={"average"} value={calcAvg()}/>
-                <Statistics text={"positive"} value={calcPositive()}/>
+                <table>
+                    <tbody>
+                    <Statistics text={"good"} value={good}/>
+                    <Statistics text={"neutral"} value={neutral}/>
+                    <Statistics text={"bad"} value={bad}/>
+                    <Statistics text={"all"} value={all.length}/>
+                    <Statistics text={"average"} value={calcAvg()}/>
+                    <Statistics text={"positive"} value={calcPositive()}/>
+                    </tbody>
+                </table>
             </div>
         )
     }
@@ -78,6 +87,8 @@ const App = () => {
     )
 }
 
-ReactDOM.render(<App/>,
+ReactDOM.render(
+    <App/>
+    ,
     document.getElementById('root')
 )
