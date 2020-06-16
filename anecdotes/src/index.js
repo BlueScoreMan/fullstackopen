@@ -8,6 +8,7 @@ const getRandomInt = () => {
 const App = (props) => {
     const [selected, setSelected] = useState(0)
     const [points, setPoints] = useState({0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0})
+    const [winner, setWinner] = useState(0)
 
     const handleQuote = () => {
         setSelected(getRandomInt())
@@ -17,14 +18,29 @@ const App = (props) => {
         const copy = {...points}
         copy[selected] += 1
         setPoints(copy)
+        handleRank(copy)
+    }
+
+    const handleRank = (copy) => {
+        for (let i = 0; i < Object.keys(copy).length; i++) {
+            if (copy[winner] < copy[i]) {
+                setWinner(selected)
+            }
+        }
     }
 
     return (
         <div>
             <button onClick={handleQuote}>next quote</button>
             <button onClick={handleVote}>vote</button>
+
+            <h1>Anecdote of the day</h1>
             {props.anecdotes[selected]}
             has {points[selected]} votes
+
+            <h1>Anecdote with most votes</h1>
+            {props.anecdotes[winner]}
+            has {points[winner]} votes
         </div>
     )
 }
