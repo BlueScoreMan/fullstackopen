@@ -47,21 +47,33 @@ const App = () => {
         }
     }
 
+    const feedback = () => {
+        if (all.length === 0) {
+            return (
+                <p>no feedback given</p>
+            )
+        }
+        return (
+            <div>
+                <h1>statistics</h1>
+                <Statistics text={"good"} value={good}/>
+                <Statistics text={"neutral"} value={neutral}/>
+                <Statistics text={"bad"} value={bad}/>
+                <Statistics text={"all"} value={all.length}/>
+                <Statistics text={"average"} value={calcAvg()}/>
+                <Statistics text={"positive"} value={calcPositive()}/>
+            </div>
+        )
+    }
+
+
     return (
         <div>
             <h1>give feedback</h1>
             <Button onClick={handleGood} text={"good"}/>
             <Button onClick={handleNeutral} text={"neutral"}/>
             <Button onClick={handleBad} text={"bad"}/>
-
-            <h1>statistics</h1>
-            <Statistics text={"good"} value={good}/>
-            <Statistics text={"neutral"} value={neutral}/>
-            <Statistics text={"bad"} value={bad}/>
-            <Statistics text={"all"} value={all.length}/>
-            <Statistics text={"average"} value={calcAvg()}/>
-            <Statistics text={"positive"} value={calcPositive()}/>
-
+            {feedback()}
         </div>
     )
 }
