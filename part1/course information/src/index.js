@@ -6,6 +6,7 @@ const Course = ({course}) => {
         <div>
             <Header course={course}/>
             <Content course={course}/>
+            <Total course={course}/>
         </div>
     )
 }
@@ -31,6 +32,12 @@ const Content = ({course}) => {
             {course.parts.map(x => <Part key={x.id} name={x.name} exercises={x.exercises}/>)}
         </div>
     )
+}
+
+const Total = (props) => {
+    const sum = props.course.parts.reduce((aggregator, order) => aggregator + order.exercises, 0)
+    return (<b>total of {sum} exercises</b>);
+
 }
 
 const App = () => {
